@@ -12,7 +12,8 @@ class Ship(Sprite):
         self.screen_rect = ai_game.screen.get_rect()
         
         #Load the ship image and get its rect
-        self.image = pygame.image.load('images/ship.bmp')
+        self.image = pygame.image.load('images/ship.png')
+        self.image = pygame.transform.scale(self.image, (self.settings.ship_width, self.settings.ship_height))
         self.rect = self.image.get_rect()
         
         #Start each new ship at the bottom center of the screen
@@ -24,6 +25,8 @@ class Ship(Sprite):
         #Movement flag; start with a ship that's not moving
         self.moving_right = False
         self.moving_left = False
+        self.firing = False
+        self.has_super_bullet = False
         
     def update(self):
         """Update the ship's position based on the movement flag"""

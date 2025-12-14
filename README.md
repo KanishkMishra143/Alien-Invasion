@@ -28,11 +28,11 @@ To play the game, you'll need to have Python and Pygame installed.
 
 1.  **Install Pygame:**
     ```bash
-    pip install pygame
+    py -3.11 -m pip install pygame
     ```
 2.  **Run the game:**
     ```bash
-    python alien_invasion.py
+    py -3.11 alien_invasion.py
     ```
 In the future, the game will be packaged into a standalone executable using **PyInstaller**, so you won't need to have Python or Pygame installed to play.
 

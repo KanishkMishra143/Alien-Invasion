@@ -211,6 +211,7 @@ class AlienEnvasion:
             self.ship.moving_left = False
         elif event.key == pygame.K_SPACE:
             self.ship.firing = False
+            self._fire_bullet()
             
     def _fire_bullet(self):
         """Create a new bullet and add it to the bullets group"""

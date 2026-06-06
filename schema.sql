@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS highscore (
+    id INTEGER PRIMARY KEY CHECK (id = 1),
+    score INTEGER NOT NULL
+);
+CREATE TABLE IF NOT EXISTS gamestate (
+    id INTEGER PRIMARY KEY CHECK (id = 1),
+    level INTEGER NOT NULL,
+    score INTEGER NOT NULL,
+    lives INTEGER NOT NULL
+);

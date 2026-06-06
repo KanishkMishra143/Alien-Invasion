@@ -17,7 +17,7 @@ The controls are simple:
 
 -   **Move Left:** ◀️ (Left Arrow Key)
 -   **Move Right:** ▶️ (Right Arrow Key)
--   **Shoot:** 🔼 (Up Arrow Key)
+-   **Shoot:** `Spacebar` (Spacebar)
 -   **Quit:** `Q` key
 
 Your mission is to shoot down all the aliens in each fleet before they reach the bottom of the screen. If an alien touches your ship, you lose a life. Lose all your lives, and the game is over.
@@ -28,11 +28,12 @@ To play the game, you'll need to have Python and Pygame installed.
 
 1.  **Install Pygame:**
     ```bash
-    py -3.11 -m pip install pygame
+    uv sync
+    uv add pygame
     ```
 2.  **Run the game:**
     ```bash
-    py -3.11 alien_invasion.py
+    uv run alien_invasion.py
     ```
 In the future, the game will be packaged into a standalone executable using **PyInstaller**, so you won't need to have Python or Pygame installed to play.
 

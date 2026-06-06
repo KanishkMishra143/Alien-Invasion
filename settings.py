@@ -7,6 +7,7 @@ class Settings:
         #Screen Settings
         self.screen_width = 1200
         self.screen_height = 800
+        self.fullscreen = True
         self.bg_color = (0, 0, 0)
         
         #Ship settings
@@ -18,7 +19,7 @@ class Settings:
         self.bullet_width = 3
         self.bullet_height = 15
         self.bullet_color = (230, 230, 230)
-        self.bullets_allowed = 100
+        self.bullets_allowed = 10
         
         # Alien settings
         self.alien_width = 50
@@ -51,17 +52,18 @@ class Settings:
         # Difficulty levels
         self.easy_settings = {
             'ship_speed': 1.5, 'bullet_speed': 2.5, 'alien_speed': 1.0, 
-            'alien_points': 50, 'speedup_scale': 1.1
+            'alien_points': 50, 'speedup_scale': 1.1, 'alien_bullet_speed': 1.0
         }
         self.medium_settings = {
             'ship_speed': 2.0, 'bullet_speed': 3.0, 'alien_speed': 1.5, 
-            'alien_points': 100, 'speedup_scale': 1.2
+            'alien_points': 100, 'speedup_scale': 1.2, 'alien_bullet_speed': 1.5
         }
         self.hard_settings = {
             'ship_speed': 2.5, 'bullet_speed': 3.5, 'alien_speed': 2.0, 
-            'alien_points': 150, 'speedup_scale': 1.3
+            'alien_points': 150, 'speedup_scale': 1.3, 'alien_bullet_speed': 2.0
         }
 
+        self.custom_settings = {}
         self.set_difficulty('medium') # Default difficulty
         self.initialize_dynamic_settings()
 
@@ -76,14 +78,15 @@ class Settings:
     
     def initialize_dynamic_settings(self):
         """Initialize settings that change throughout the game."""
-        self.ship_speed = self.current_difficulty_settings['ship_speed']
-        self.bullet_speed = self.current_difficulty_settings['bullet_speed']
-        self.alien_speed = self.current_difficulty_settings['alien_speed']
-        self.speedup_scale = self.current_difficulty_settings['speedup_scale']
+        self.ship_speed = self.custom_settings.get('ship_speed', self.current_difficulty_settings['ship_speed'])
+        self.bullet_speed = self.custom_settings.get('bullet_speed', self.current_difficulty_settings['bullet_speed'])
+        self.alien_speed = self.custom_settings.get('alien_speed', self.current_difficulty_settings['alien_speed'])
+        self.speedup_scale = self.custom_settings.get('speedup_scale', self.current_difficulty_settings['speedup_scale'])
         # fleet_direction of 1 represents right; -1 represents left.
         self.fleet_direction = 1
         # Scoring settings
         self.alien_points = self.current_difficulty_settings['alien_points']
+        self.alien_bullet_speed = self.current_difficulty_settings['alien_bullet_speed']
         
     def increase_speed(self):
         """Increase speed settings and alien point values."""
@@ -93,6 +96,8 @@ class Settings:
             self.bullet_speed *= self.speedup_scale
         if self.alien_speed < 3.0:
             self.alien_speed *= self.speedup_scale
+        if self.alien_bullet_speed < 4.0:
+            self.alien_bullet_speed *= self.speedup_scale
         if self.alien_points < 1000:
             self.alien_points = int(self.alien_points * self.score_scale)
         

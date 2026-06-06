@@ -12,7 +12,7 @@ class Bullet(Sprite):
         self.is_super = is_super
 
         if self.is_super:
-            self.color = (255, 0, 0) # Red for super bullets
+            self.color = (0, 255, 255) # Cyan for super bullets
         else:
             self.color = self.settings.bullet_color
 
@@ -27,7 +27,10 @@ class Bullet(Sprite):
     def update(self):
         """Move the bullet up the screen."""
         # Update the exact position of the bullet.
-        self.y -= self.settings.bullet_speed
+        if self.is_super:
+            self.y -= self.settings.bullet_speed * 10
+        else:
+            self.y -= self.settings.bullet_speed
         
         # Update the rect position.
         self.rect.y = self.y
